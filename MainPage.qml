@@ -2,49 +2,47 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
-    objectName: 'mainPage'
-    allowedOrientations: orientation.All
 
-    property int counter : 0
-
-    Column{
+    Grid {
+        id: input
+        columns: 2
         width: parent.width
-        height: parent.height
-        spacing: 10
 
-        Label{
-            id : counterLabel
-            width: 160
-            height: 100
-            text: counter
-            font.pixelSize: 100
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+        Button {
+            text: "+"
+            width: parent.width / 2
+            onClicked:{
+                console.log(parseInt(number1.text) + parseInt(number2.text));
+            }
+        }
 
-        }
-        Button{
+        Button {
+            text: "-"
             width: parent.width / 2
-            text: 'click me'
-            onClicked: {
-                counter++
+            onClicked:{
+                console.log(parseInt(number1.text) - parseInt(number2.text));
             }
-            anchors.top: counterLabel.bottom
         }
-        Button{
+
+        TextField {
+            id: number1
+            placeholderText: "Number 1"
             width: parent.width / 2
-            text: 'back'
-            onClicked: {
-                counter--
-            }
-            anchors.top: counterLabel.bottom
-            anchors.right: parent.right
         }
-        Button{
-            width: parent.width
-            text: 'reset'
-            onClicked: {
-                counter = 0
-            }
+
+        TextField {
+            id: number2
+            placeholderText: "Number 2"
+            width: parent.width / 2
         }
     }
-}
+
+    Button {
+        text: "Отменить"
+        width: parent.width
+        y: number1.y + 100
+        onClicked:{
+            number1.text = "";
+            number2.text = "";
+        }
+    }
