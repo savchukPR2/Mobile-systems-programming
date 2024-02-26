@@ -46,3 +46,45 @@ Page {
             number2.text = "";
         }
     }
+
+// Вадим
+
+import QtQuick 2.0
+import Sailfish.Silica 1.0
+
+Page {
+
+    Grid {
+        columns: 2
+        width: parent.width
+
+        // Кнопка для очистки текстовых полей
+        Button {
+            text: "Очистить"
+            width: parent.width / 2
+            onClicked: {
+                number1.text = "";
+                number2.text = "";
+            }
+        }
+
+        Button {
+            text: "Sum"
+            width: parent.width / 2
+            onClicked: console.log(parseInt(number1.text) + parseInt(number2.text))
+        }
+
+        TextField {
+            id: number1
+            placeholderText: "Number 1"
+            width: parent.width / 2
+        }
+
+        TextField {
+            id: number2
+            placeholderText: "Number 2"
+            width: parent.width / 2
+        }
+
+    }
+}
